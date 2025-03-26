@@ -1,0 +1,80 @@
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="card">
+      <div class="card-header">
+        <p class="card-header-title is-centered">
+          <%= app_user.new_record? ? "Create Account" : "Edit Account" %>
+        </p>
+      </div>
+      <div class="card-content">
+        <%= form_with(model: app_user) do |form| %>
+          <% if Rails.env.development? %>
+            <div class="notification is-info">
+              <p>Form params:
+                <%= params.inspect %></p>
+              <p>Model errors:
+                <%= app_user.errors.full_messages %></p>
+            </div>
+          <% end %>
+
+          <% if app_user.errors.any? %>
+            <div class="notification is-danger">
+              <h2 class="subtitle"><%= pluralize(app_user.errors.count, "error") %>
+                prohibited this account from being saved:</h2>
+              <ul>
+                <% app_user.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= form.label :name, class: "label" %>
+            <div class="control">
+              <%= form.text_field :name, class: "input", placeholder: "Your name" %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label :email, class: "label" %>
+            <div class="control has-icons-left">
+              <%= form.email_field :email, class: "input", placeholder: "email@example.com" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label :password, class: "label" %>
+            <div class="control has-icons-left">
+              <%= form.password_field :password, class: "input", placeholder: "Password" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label :password_confirmation, class: "label" %>
+            <div class="control has-icons-left">
+              <%= form.password_field :password_confirmation,
+                                  class: "input",
+                                  placeholder: "Confirm password" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= form.submit class: "button is-primary is-fullwidth" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

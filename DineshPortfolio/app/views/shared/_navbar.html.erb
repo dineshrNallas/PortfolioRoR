@@ -1,0 +1,32 @@
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <div class="navbar-item">
+      Dinesh Portfolio
+    </div>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="buttton is-light is-responsive is-primary is-small">
+        <%= link_to "About Me", profile_path, class: "button is-light is-responsive is-primary is-small" %>
+      </a>
+
+      <a class="button is-light is-responsive  is-primary is-small">
+        Documentation
+      </a>
+
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if logged_in? %>
+            <%= button_to "Logout", logout_path, method: :delete, class: "button is-light" %>
+          <% else %>
+            <%= link_to "Login", app_users_path, class: "button is-light" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

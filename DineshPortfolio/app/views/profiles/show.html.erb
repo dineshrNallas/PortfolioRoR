@@ -1,0 +1,143 @@
+<div class="container" data-controller="profile">
+  <div class="columns">
+    <div class="column is-one-third">
+      <div class="card is-light has-shadow">
+        <div class="card-image has-text-centered pt-5">
+          <figure class="image is-128x128 is-inline-block">
+            <img
+              src="<%= @profile.image_url %>"
+              class="is-rounded"
+              alt="Profile image"
+            />
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                id="name"
+                name="profile[name]"
+                value="<%= @profile.name %>"
+                disabled
+                data-profile-target="input"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                id="title"
+                name="profile[title]"
+                value="<%= @profile.title %>"
+                disabled
+                data-profile-target="input"
+              />
+            </div>
+          </div>
+
+          <div
+            class="file is-boxed is-centered mt-3"
+            style="display: none"
+            data-profile-target="fileUpload"
+          >
+            <label class="file-label">
+              <input
+                class="file-input"
+                type="file"
+                accept="image/png,image/jpeg"
+                id="image_file"
+                name="profile[image_file]"
+                disabled
+                data-profile-target="input fileInput"
+                data-action="change->profile#handleFileSelect"
+              />
+              <input
+                type="hidden"
+                id="image_base64"
+                name="profile[image_url]"
+                value="<%= @profile.image_url %>"
+                data-profile-target="base64Input"
+              />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">Change photo</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column: Biography -->
+    <div class="column is-two-thirds">
+      <form
+        id="profile-form"
+        data-profile-target="form"
+        data-action="submit->profile#save"
+        action="<%= profile_path %>"
+        method="post"
+      >
+        <input type="hidden" name="_method" value="patch" />
+        <div class="card is-light has-shadow">
+          <div class="card-content">
+            <div class="field">
+              <label class="label">Biography</label>
+              <div class="control">
+                <textarea
+                  class="textarea"
+                  id="biography"
+                  name="profile[biography]"
+                  rows="10"
+                  disabled
+                  data-profile-target="input"
+                >
+                <%= @profile.biography %></textarea
+                >
+              </div>
+            </div>
+
+            <div class="field is-grouped is-grouped-right mt-4">
+              <div class="control">
+                <button
+                  type="button"
+                  id="edit-btn"
+                  class="button is-primary"
+                  data-profile-target="editButton"
+                  data-action="click->profile#edit"
+                >
+                  <span class="icon">
+                    <i class="fas fa-edit"></i>
+                  </span>
+                  <span>Edit Profile</span>
+                </button>
+              </div>
+              <div class="control">
+                <button
+                  type="submit"
+                  id="save-btn"
+                  class="button is-success"
+                  style="display: none"
+                  data-profile-target="saveButton"
+                >
+                  <span class="icon">
+                    <i class="fas fa-save"></i>
+                  </span>
+                  <span>Save Changes</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
