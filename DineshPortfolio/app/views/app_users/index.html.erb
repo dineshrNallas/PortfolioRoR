@@ -1,0 +1,50 @@
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
+<% content_for :title, "Login" %>
+
+<div class="columns is-centered mt-6">
+  <div class="column is-one-third">
+    <div class="card">
+      <div class="card-header">
+        <p class="card-header-title is-centered">
+          Login
+        </p>
+      </div>
+      <div class="card-content">
+        <%= form_with(url: login_path, method: :post) do |form| %>
+          <div class="field">
+            <%= form.label :email, class: "label" %>
+            <div class="control has-icons-left">
+              <%= form.email_field :email, class: "input", required: true, placeholder: "email@example.com" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label :password, class: "label" %>
+            <div class="control has-icons-left">
+              <%= form.password_field :password, class: "input", required: true, placeholder: "Password" %>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field mt-4">
+            <div class="control">
+              <%= form.submit "Login", class: "button is-primary is-fullwidth" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <div class="card-footer-item">
+          Don't have an account? <%= link_to "Sign up", new_app_user_path, class: "ml-2" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

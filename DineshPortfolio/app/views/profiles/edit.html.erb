@@ -1,0 +1,67 @@
+<% content_for :title, "Edit Profile" %>
+
+<div class="container mt-5">
+  <div class="columns is-centered">
+    <div class="column is-half">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-header-title is-centered">
+            Edit Your Profile
+          </p>
+        </div>
+        <div class="card-content">
+          <%= form_with(model: @profile, url: profile_path, method: :patch) do |form| %>
+            <% if @profile.errors.any? %>
+              <div class="notification is-danger">
+                <h2 class="subtitle"><%= pluralize(@profile.errors.count, "error") %>
+                  prohibited this profile from being saved:</h2>
+                <ul>
+                  <% @profile.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="field">
+              <%= form.label :name, class: "label" %>
+              <div class="control">
+                <%= form.text_field :name, class: "input" %>
+              </div>
+            </div>
+
+            <div class="field">
+              <%= form.label :title, class: "label" %>
+              <div class="control">
+                <%= form.text_field :title, class: "input" %>
+              </div>
+            </div>
+
+            <div class="field">
+              <%= form.label :image_url, class: "label" %>
+              <div class="control">
+                <%= form.text_field :image_url, class: "input" %>
+              </div>
+            </div>
+
+            <div class="field">
+              <%= form.label :biography, class: "label" %>
+              <div class="control">
+                <%= form.text_area :biography, class: "textarea", rows: 10 %>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <%= form.submit "Update Profile", class: "button is-primary" %>
+              </div>
+              <div class="control">
+                <%= link_to "Cancel", profile_path, class: "button is-light" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
