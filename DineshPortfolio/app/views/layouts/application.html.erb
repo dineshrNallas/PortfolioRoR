@@ -30,6 +30,20 @@
     <div class="main-content">
         <%= render "shared/navbar" %>
 
+      <% if notice %>
+        <div class="notification is-success">
+          <button class="delete"></button>
+          <%= notice %>
+        </div>
+      <% end %>
+      
+      <% if alert %>
+        <div class="notification is-danger">
+          <button class="delete"></button>
+          <%= alert %>
+        </div>
+      <% end %>
+
       <section class="hero is-light is-fullheight-with-navbar">
         <div class="hero-body">
           <div class="container is-fluid is-centered">
